@@ -1,16 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="ua.university.ornamenteditor.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
-
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <StackPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fitHeight="700.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@ornament.jpg" />
+            </image>
+        </ImageView>
+        <VBox prefHeight="600.0" prefWidth="900.0">
+            <children>
+                <MenuBar VBox.vgrow="NEVER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Новий візерунок">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Створити новий візерунок" onAction="#onNewButtonClick"/>
+                                <MenuItem mnemonicParsing="false" text="Згенерувати візерунок" onAction="#onNewGenerateButtonClick"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Зберегти">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Зберегти як..." onAction="#onSaveButtonClick"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Відкрити">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Відкрити візерунок" onAction="#onOpenButtonClick"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Інструкція">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Відкрити інструкцію щодо використання" onAction="#onInstructionButtonClick"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="596.0" prefWidth="902.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Button layoutX="311.0" layoutY="370.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="277.0" text="Розпочати!" textAlignment="CENTER" onAction="#onStartButtonClick">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="352.0" layoutY="475.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="196.0" text="Вихід" onAction="#onExitButtonClick">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+                        <TextArea layoutX="142.0" layoutY="39.0" prefHeight="294.0" prefWidth="615.0" promptText="Вітаю" text="Вітаю у редакторі орнаменту! &#10;У програмі Ви можете створити власний унікальний орнамент&#10;Інструкція щодо використання:&#10;1.">
+                            <font>
+                                <Font name="Palatino Linotype Italic" size="20.0" />
+                            </font>
+                        </TextArea>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+    </children>
+</StackPane>
 </VBox>
