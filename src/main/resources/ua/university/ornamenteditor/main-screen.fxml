@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ColorPicker?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="ua.university.ornamenteditor.HelloController">
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="ua.university.ornamenteditor.MainScreenController">
     <StackPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="700.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
@@ -56,34 +45,61 @@
           </MenuBar>
           <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="596.0" prefWidth="902.0" VBox.vgrow="ALWAYS">
             <children>
-                  <Button layoutX="428.0" layoutY="489.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="277.0" text="Вишити!" textAlignment="CENTER">
+                  <Button layoutX="428.0" layoutY="489.0" mnemonicParsing="false" onAction="#printOrnament" prefHeight="70.0" prefWidth="277.0" text="Вишити!" textAlignment="CENTER">
                      <font>
                         <Font name="Palatino Linotype Italic" size="21.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="482.0" fitWidth="470.0" layoutX="333.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="470.0" fitWidth="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#printCross" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@полотно2.jpeg" />
+                        <Image url="@grid.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="528.0" fitWidth="278.0" layoutX="36.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                <Canvas fx:id="myCanvas" width="470.0" height="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#printCross" />
+                <ImageView fitHeight="528.0" fitWidth="278.0" layoutX="36.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                          <Image url="@back2.jpg" />
                      </image>
                   </ImageView>
-                  <ColorPicker layoutX="86.0" layoutY="281.0" prefHeight="46.0" prefWidth="178.0" promptText="Обрати колір..." />
-                  <RadioButton layoutX="86.0" layoutY="367.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="178.0" text="Очистити клітинку">
+                  <ColorPicker fx:id="pickedColor" layoutX="86.0" layoutY="281.0" prefHeight="46.0" prefWidth="178.0" promptText="Обрати колір..." />
+                  <RadioButton fx:id="clearOne" layoutX="86.0" layoutY="367.0" mnemonicParsing="false" onAction="#cleanOneCross" prefHeight="46.0" prefWidth="178.0" text="Очистити клітинку">
                      <font>
                         <Font name="Palatino Linotype Italic" size="15.0" />
                      </font>
                   </RadioButton>
-                  <ChoiceBox fx:id="chooseSymetry" layoutX="86.0" layoutY="113.0" prefHeight="46.0" prefWidth="178.0" />
-                  <Button layoutX="86.0" layoutY="432.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="178.0" text="Очистити полотно">
+                <ChoiceBox fx:id="chooseSymetry" layoutX="86.0" layoutY="113.0" onAction="#chooseSymetry" prefHeight="46.0" prefWidth="178.0">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Немає" />
+                            <String fx:value="Вертикальна" />
+                            <String fx:value="Горизонтальна" />
+                        </FXCollections>
+                    </items>
+                    <value>
+                        <String fx:value="Немає" />
+                    </value>
+                </ChoiceBox>
+                  <Button layoutX="86.0" layoutY="432.0" mnemonicParsing="false" onAction="#cleanCanvas" prefHeight="46.0" prefWidth="178.0" text="Очистити полотно">
                      <font>
                         <Font name="Palatino Linotype Italic" size="17.0" />
                      </font>
                   </Button>
-                  <ChoiceBox fx:id="chooseDuplication" layoutX="86.0" layoutY="185.0" prefHeight="46.0" prefWidth="178.0" />
+
+
+                <ChoiceBox fx:id="chooseDuplication" layoutX="86.0" layoutY="185.0" prefHeight="46.0" prefWidth="178.0">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Немає" />
+                            <String fx:value="Вертикальне" />
+                            <String fx:value="Горизонтальне" />
+                        </FXCollections>
+                    </items>
+                    <value>
+                        <String fx:value="Немає" />
+                    </value>
+                </ChoiceBox>
+
+
                   <Separator layoutX="36.0" layoutY="246.0" prefHeight="26.0" prefWidth="278.0" />
                   <Separator layoutX="36.0" layoutY="341.0" prefHeight="26.0" prefWidth="278.0" />
                   <Text layoutX="86.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Налаштування" wrappingWidth="178.39999999999998">

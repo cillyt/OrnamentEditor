@@ -2,6 +2,7 @@ module ua.university.ornamenteditor {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
+    requires java.desktop;
 
 
     opens ua.university.ornamenteditor to javafx.fxml;
