@@ -6,8 +6,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CanvasPrinting {
     public static String cross = "✖";
+    public static List ornament = new ArrayList();
 
     private static double gridWidth = 470.0 / 27.0;
     private static double gridHeight = 470.0 / 27.0;
@@ -29,6 +33,11 @@ public class CanvasPrinting {
         gc.setFont(new Font(19));
 
         gc.fillText(cross, newX, newY + gridHeight - 2);
+        Cross c = new Cross(newX, newY, pickedColor);
+        ornament.add(c);
+        for(Object cr : ornament){
+            System.out.println(cr);
+        }
     }
 
     public static void deleteCross(MouseEvent e, Canvas canvas) {
