@@ -30,4 +30,22 @@ public class CanvasPrinting {
 
         gc.fillText(cross, newX, newY + gridHeight - 2);
     }
+
+    public static void deleteCross(MouseEvent e, Canvas canvas) {
+        double x = e.getX();
+        double y = e.getY();
+
+        double newX = Math.floor(x / gridWidth) * gridWidth;
+        double newY = Math.floor(y / gridHeight) * gridHeight;
+
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(newX, newY, gridWidth, gridHeight);
+    }
+
+    public static void deleteAll(Canvas canvas) {
+
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(0, 0, 470, 470);
+    }
+
 }

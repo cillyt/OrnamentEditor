@@ -15,16 +15,39 @@ public class MainScreenController {
     @FXML
     protected void cleanCanvas() {
         System.out.println("cleanCanvas");
+        CanvasPrinting.deleteAll(myCanvas);
+    }
+
+//    @FXML
+//    protected void cleanOneCross(MouseEvent e) {
+//        if (clearOne.isSelected()) {
+//            System.out.println("cleanOneCross");
+//            CanvasPrinting.deleteCross(e, myCanvas);
+//
+//        }
+//        else
+//            System.out.println("dont clear OneCross");
+//
+//
+//    }
+
+
+    @FXML
+    protected void changeCross(MouseEvent e) {
+        if (clearOne.isSelected()) {
+            System.out.println("cleanOneCross");
+            CanvasPrinting.deleteCross(e, myCanvas);
+        }
+        else if(!clearOne.isSelected()) {
+            System.out.println("printCross");
+            Color picked = pickedColor.getValue();
+            CanvasPrinting.putCross(e, myCanvas, picked);
+        }
     }
 
     @FXML
-    protected void cleanOneCross() {
-        if (clearOne.isSelected()) {
-            System.out.println("cleanOneCross");
-        }
-        else         System.out.println("dont clear OneCross");
-
-
+    public void initialize() {
+        pickedColor.setValue(Color.web("#990000"));
     }
 
     @FXML
@@ -45,13 +68,16 @@ public class MainScreenController {
     protected void printOrnament() {
         System.out.println("printOrnament");
     }
-
-    @FXML
-    protected void printCross(MouseEvent e) {
-        System.out.println("printCross");
-        Color picked = pickedColor.getValue();
-        CanvasPrinting.putCross(e, myCanvas, picked);
-    }
+//
+//    @FXML
+//    protected void printCross(MouseEvent e) {
+//        if (!clearOne.isSelected()) {
+//            System.out.println("printCross");
+//            Color picked = pickedColor.getValue();
+//            CanvasPrinting.putCross(e, myCanvas, picked);
+//        }
+//
+//    }
 
     @FXML
     protected ColorPicker pickedColor;

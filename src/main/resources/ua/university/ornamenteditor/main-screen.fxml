@@ -50,19 +50,19 @@
                         <Font name="Palatino Linotype Italic" size="21.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="470.0" fitWidth="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#printCross" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="470.0" fitWidth="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@grid.png" />
                      </image>
                   </ImageView>
-                <Canvas fx:id="myCanvas" width="470.0" height="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#printCross" />
+                <Canvas fx:id="myCanvas" width="470.0" height="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" />
                 <ImageView fitHeight="528.0" fitWidth="278.0" layoutX="36.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                          <Image url="@back2.jpg" />
                      </image>
                   </ImageView>
                   <ColorPicker fx:id="pickedColor" layoutX="86.0" layoutY="281.0" prefHeight="46.0" prefWidth="178.0" promptText="Обрати колір..." />
-                  <RadioButton fx:id="clearOne" layoutX="86.0" layoutY="367.0" mnemonicParsing="false" onAction="#cleanOneCross" prefHeight="46.0" prefWidth="178.0" text="Очистити клітинку">
+                  <RadioButton fx:id="clearOne" layoutX="86.0" layoutY="367.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="178.0" text="Очистити клітинку">
                      <font>
                         <Font name="Palatino Linotype Italic" size="15.0" />
                      </font>
