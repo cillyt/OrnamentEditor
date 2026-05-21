@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CanvasPrinting {
     public static String cross = "✖";
-    public static List ornament = new ArrayList();
+    public static List <Cross> ornament = new ArrayList();
 
     private static double gridWidth = 470.0 / 27.0;
     private static double gridHeight = 470.0 / 27.0;
@@ -33,9 +33,15 @@ public class CanvasPrinting {
         gc.setFont(new Font(19));
 
         gc.fillText(cross, newX, newY + gridHeight - 2);
+
+
+
+
         Cross c = new Cross(newX, newY, pickedColor);
+        ornament.removeIf(cr -> cr.getX() == newX && cr.getY() == newY);
         ornament.add(c);
-        for(Object cr : ornament){
+
+        for(Cross cr : ornament){
             System.out.println(cr);
         }
     }
@@ -49,12 +55,25 @@ public class CanvasPrinting {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(newX, newY, gridWidth, gridHeight);
+
+//        for(Cross cr : ornament){
+//            if(cr.getX() == newX && cr.getY() == newY){
+//                ornament.remove(cr);
+//            }
+//        }
+
+        ornament.removeIf((Cross cr) -> cr.getX() == newX && cr.getY() == newY);
+
+//        ornament.get(c);
+//        for(Object cr : ornament){
+//            System.out.println(cr);
+//        }
     }
 
     public static void deleteAll(Canvas canvas) {
-
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, 470, 470);
+        ornament.clear();
     }
 
 }

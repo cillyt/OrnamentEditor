@@ -14,4 +14,16 @@ public class Cross {
     public String toString(){
         return "cross:" + color + " " + x + " " + y;
     }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public Color getColor() {
+        return color;
+    }
 }
