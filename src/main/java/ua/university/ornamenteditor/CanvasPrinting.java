@@ -16,7 +16,7 @@ public class CanvasPrinting {
     private static double gridWidth = 470.0 / 26.0;
     private static double gridHeight = 470.0 / 26.0;
 
-    public static void putCross(MouseEvent e, Canvas canvas, Color pickedColor) {
+    public static void putCross(MouseEvent e, Canvas canvas, Color pickedColor, int symStatus) {
         double x = e.getX();
         double y = e.getY();
 //        System.out.println("x=" + x + ", y=" + y);
@@ -29,11 +29,24 @@ public class CanvasPrinting {
 //        gc.setFill(Color.LIGHTGRAY);
 //        gc.fillRect(newX, newY, gridWidth, gridHeight);
         gc.setFill(pickedColor);
-
         gc.setFont(new Font(19));
-
         gc.fillText(cross, newX, newY + gridHeight - 2);
 
+        if (symStatus == 1) {               //vertical
+            gc.fillText(cross, (470 - ((double) 470 /26)) - newX, newY + gridHeight - 2);
+
+            Cross c = new Cross((470 - ((double) 470 /26)) - newX, newY, pickedColor);
+            ornament.removeIf(cr -> cr.getX() == (470 - ((double) 470 /26)) - newX && cr.getY() == newY);
+            ornament.add(c);
+        }
+
+        else if (symStatus == 2) {          //horizontal
+            gc.fillText(cross, newX, (470 - ((double) 470 /26)) - newY + gridHeight - 2);
+
+            Cross c = new Cross(newX, (470 - ((double) 470 /26)) - newY, pickedColor);
+            ornament.removeIf(cr -> cr.getX() == newX && cr.getY() == (470 - ((double) 470 /26)) - newY);
+            ornament.add(c);
+        }
 
 
 
@@ -41,7 +54,7 @@ public class CanvasPrinting {
         ornament.removeIf(cr -> cr.getX() == newX && cr.getY() == newY);
         ornament.add(c);
 
-        for(Cross cr : ornament){
+        for(Cross cr : ornament){           //видалити після тестувань
             System.out.println(cr);
         }
     }
@@ -56,18 +69,7 @@ public class CanvasPrinting {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(newX, newY, gridWidth, gridHeight);
 
-//        for(Cross cr : ornament){
-//            if(cr.getX() == newX && cr.getY() == newY){
-//                ornament.remove(cr);
-//            }
-//        }
-
         ornament.removeIf((Cross cr) -> cr.getX() == newX && cr.getY() == newY);
-
-//        ornament.get(c);
-//        for(Object cr : ornament){
-//            System.out.println(cr);
-//        }
     }
 
     public static void deleteAll(Canvas canvas) {

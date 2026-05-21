@@ -21,6 +21,7 @@ import java.io.IOException;
 public class MainScreenController {
 //    @FXML
 //    private Label welcomeText;
+    public int symStatus = 0; //1- вертикальна    2-горизонтальна
 
     @FXML
     protected void cleanCanvas() {
@@ -38,7 +39,15 @@ public class MainScreenController {
         else if(!clearOne.isSelected()) {
             System.out.println("printCross");
             Color picked = pickedColor.getValue();
-            CanvasPrinting.putCross(e, myCanvas, picked);
+            if(chooseSymetry.getValue().equals("Вертикальна")){
+                System.out.println("Вертикальна");
+                symStatus = 1;
+            }
+            else if(chooseSymetry.getValue().equals("Горизонтальна")){
+                System.out.println("Горизонтальна");
+                symStatus = 2;
+            }
+            CanvasPrinting.putCross(e, myCanvas, picked, symStatus);
         }
     }
 
@@ -59,10 +68,7 @@ public class MainScreenController {
         System.out.println("chooseDuplication");
     }
 
-    @FXML
-    protected void printOrnament() {
-        System.out.println("printOrnament");
-    }
+
 
     @FXML
     public void saveOrnament(){
@@ -93,29 +99,17 @@ public class MainScreenController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Відкрити орнамент");
 
-        // Дозволяємо вибирати тільки картинки
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Зображення PNG (*.png)", "*.png")
         );
 
         File file = fileChooser.showOpenDialog(myCanvas.getScene().getWindow());
 
-        // Якщо користувач вибрав файл (не натиснув "Скасувати"):
         if (file != null) {
-            // 2. Завантажуємо файл як об'єкт Image
-            // Метод toURI().toString() перетворює шлях до файлу у зрозумілий для JavaFX формат
             Image image = new Image(file.toURI().toString());
-
-            // 3. Беремо пензлик нашого полотна
             GraphicsContext gc = myCanvas.getGraphicsContext2D();
-
-            // (За бажанням) Очищаємо полотно перед тим, як вставити нову картинку
             gc.clearRect(0, 0, myCanvas.getWidth(), myCanvas.getHeight());
-
-            // 4. Малюємо картинку на полотні!
-            // Координати (0, 0) - це лівий верхній кут. Далі вказуємо ширину і висоту полотна.
             gc.drawImage(image, 0, 0, myCanvas.getWidth(), myCanvas.getHeight());
-
             System.out.println("Орнамент успішно завантажено!");
         }
     }
