@@ -28,8 +28,7 @@
                         <menus>
                             <Menu mnemonicParsing="false" text="Новий візерунок">
                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="Створити новий візерунок" onAction="#onNewButtonClick" />
-                                    <MenuItem mnemonicParsing="false" text="Згенерувати візерунок" onAction="#onNewGenerateButtonClick" />
+                                    <MenuItem mnemonicParsing="false" text="Згенерувати візерунок за словом" onAction="#onNewGenerateButtonClick" />
                                 </items>
                             </Menu>
                             <Menu mnemonicParsing="false" text="Зберегти">

@@ -13,8 +13,8 @@ public class CanvasPrinting {
     public static String cross = "✖";
     public static List <Cross> ornament = new ArrayList();
 
-    private static double gridWidth = 470.0 / 27.0;
-    private static double gridHeight = 470.0 / 27.0;
+    private static double gridWidth = 470.0 / 26.0;
+    private static double gridHeight = 470.0 / 26.0;
 
     public static void putCross(MouseEvent e, Canvas canvas, Color pickedColor) {
         double x = e.getX();

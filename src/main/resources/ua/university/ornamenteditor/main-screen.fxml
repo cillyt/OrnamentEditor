@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="ua.university.ornamenteditor.MainScreenController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ua.university.ornamenteditor.MainScreenController">
     <StackPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="700.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
@@ -22,18 +22,17 @@
             <menus>
               <Menu mnemonicParsing="false" text="Новий візерунок">
                 <items>
-                  <MenuItem mnemonicParsing="false" text="Створити новий візерунок" />
-                        <MenuItem mnemonicParsing="false" text="Згенерувати візерунок" />
+                  <MenuItem mnemonicParsing="false" text="Згенерувати візерунок за словом" />
                 </items>
               </Menu>
               <Menu mnemonicParsing="false" text="Зберегти">
                 <items>
-                  <MenuItem mnemonicParsing="false" text="Зберегти як..." />
+                  <MenuItem mnemonicParsing="false" text="Зберегти як..." onAction="#saveOrnament" />
                 </items>
               </Menu>
               <Menu mnemonicParsing="false" text="Відкрити">
                 <items>
-                  <MenuItem mnemonicParsing="false" text="Відкрити візерунок" />
+                  <MenuItem mnemonicParsing="false" text="Відкрити візерунок" onAction="#openOrnament" />
                 </items>
               </Menu>
                   <Menu mnemonicParsing="false" text="Інструкція">
@@ -55,7 +54,7 @@
                         <Image url="@grid.png" />
                      </image>
                   </ImageView>
-                <Canvas fx:id="myCanvas" width="470.0" height="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" />
+                <Canvas fx:id="myCanvas" height="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" width="470.0" />
                 <ImageView fitHeight="528.0" fitWidth="278.0" layoutX="36.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                          <Image url="@back2.jpg" />
@@ -67,7 +66,7 @@
                         <Font name="Palatino Linotype Italic" size="15.0" />
                      </font>
                   </RadioButton>
-                <ChoiceBox fx:id="chooseSymetry" layoutX="86.0" layoutY="113.0" onAction="#chooseSymetry" prefHeight="46.0" prefWidth="178.0">
+                <ChoiceBox fx:id="chooseSymetry" layoutX="86.0" layoutY="125.0" onAction="#chooseSymetry" prefHeight="34.0" prefWidth="178.0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Немає" />
@@ -86,7 +85,7 @@
                   </Button>
 
 
-                <ChoiceBox fx:id="chooseDuplication" layoutX="86.0" layoutY="185.0" prefHeight="46.0" prefWidth="178.0">
+                <ChoiceBox fx:id="chooseDuplication" layoutX="86.0" layoutY="212.0" prefHeight="33.0" prefWidth="178.0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Немає" />
@@ -108,6 +107,14 @@
                      </font>
                   </Text>
                   <Separator layoutX="36.0" layoutY="76.0" prefHeight="26.0" prefWidth="278.0" />
+                     <Text layoutX="142.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Симетрія">
+                        <font>
+                           <Font name="Palatino Linotype Italic" size="15.0" />
+                        </font></Text>
+                     <Text layoutX="135.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дублювання">
+                        <font>
+                           <Font name="Palatino Linotype Italic" size="15.0" />
+                        </font></Text>
             </children>
           </AnchorPane>
         </children>
