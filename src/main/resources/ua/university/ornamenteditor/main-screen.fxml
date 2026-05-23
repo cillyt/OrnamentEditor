@@ -9,16 +9,11 @@
 <?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ua.university.ornamenteditor.MainScreenController">
-    <StackPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+    <StackPane fx:id="mainContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="main-background" stylesheets="@../../../style.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="700.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-             <Image url="@ornament.jpg" />
-         </image>
-      </ImageView>
-      <VBox prefHeight="600.0" prefWidth="900.0">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="900.0" StackPane.alignment="TOP_CENTER">
         <children>
-          <MenuBar VBox.vgrow="NEVER">
+          <MenuBar VBox.vgrow="ALWAYS">
             <menus>
               <Menu mnemonicParsing="false" text="Новий візерунок">
                 <items>
@@ -27,12 +22,12 @@
               </Menu>
               <Menu mnemonicParsing="false" text="Зберегти">
                 <items>
-                  <MenuItem mnemonicParsing="false" text="Зберегти як..." onAction="#saveOrnament" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveOrnament" text="Зберегти як..." />
                 </items>
               </Menu>
               <Menu mnemonicParsing="false" text="Відкрити">
                 <items>
-                  <MenuItem mnemonicParsing="false" text="Відкрити візерунок" onAction="#openOrnament" />
+                  <MenuItem mnemonicParsing="false" onAction="#openOrnament" text="Відкрити візерунок" />
                 </items>
               </Menu>
                   <Menu mnemonicParsing="false" text="Інструкція">
@@ -44,29 +39,29 @@
           </MenuBar>
           <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="596.0" prefWidth="902.0" VBox.vgrow="ALWAYS">
             <children>
-                  <Button layoutX="428.0" layoutY="489.0" mnemonicParsing="false" onAction="#printOrnament" prefHeight="70.0" prefWidth="277.0" text="Вишити!" textAlignment="CENTER">
-                     <font>
-                        <Font name="Palatino Linotype Italic" size="21.0" />
-                     </font>
-                  </Button>
-                  <ImageView fitHeight="470.0" fitWidth="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" pickOnBounds="true" preserveRatio="true">
+<!--                  <Button layoutX="428.0" layoutY="489.0" mnemonicParsing="false" onAction="#printOrnament" prefHeight="70.0" prefWidth="277.0" text="Вишити!" textAlignment="CENTER">-->
+<!--                     <font>-->
+<!--                        <Font name="Palatino Linotype Italic" size="21.0" />-->
+<!--                     </font>-->
+<!--                  </Button>-->
+                  <ImageView fitHeight="470.0" fitWidth="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="86.39999999999998" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="18.0">
                      <image>
-                        <Image url="@grid.png" />
+                        <Image url="@../../../img/grid.png" />
                      </image>
                   </ImageView>
-                <Canvas fx:id="myCanvas" height="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" width="470.0" />
-                <ImageView fitHeight="528.0" fitWidth="278.0" layoutX="36.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                <Canvas fx:id="myCanvas" height="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" width="470.0" AnchorPane.rightAnchor="97.0" />
+                <ImageView fitHeight="528.0" fitWidth="278.0" layoutX="36.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="36.0">
                      <image>
-                         <Image url="@back2.jpg" />
+                         <Image url="@../../../img/back2.jpg" />
                      </image>
                   </ImageView>
-                  <ColorPicker fx:id="pickedColor" layoutX="86.0" layoutY="281.0" prefHeight="46.0" prefWidth="178.0" promptText="Обрати колір..." />
-                  <RadioButton fx:id="clearOne" layoutX="86.0" layoutY="367.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="178.0" text="Очистити клітинку">
+                  <ColorPicker fx:id="pickedColor" layoutX="86.0" layoutY="281.0" prefHeight="46.0" prefWidth="178.0" promptText="Обрати колір..." AnchorPane.leftAnchor="86.0" />
+                  <RadioButton fx:id="clearOne" layoutX="86.0" layoutY="367.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="178.0" text="Очистити клітинку" AnchorPane.leftAnchor="86.0">
                      <font>
                         <Font name="Palatino Linotype Italic" size="15.0" />
                      </font>
                   </RadioButton>
-                <ChoiceBox fx:id="chooseSymetry" layoutX="86.0" layoutY="125.0" onAction="#chooseSymetry" prefHeight="34.0" prefWidth="178.0">
+                <ChoiceBox fx:id="chooseSymetry" layoutX="86.0" layoutY="125.0" onAction="#chooseSymetry" prefHeight="34.0" prefWidth="178.0" AnchorPane.leftAnchor="86.0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Немає" />
@@ -78,14 +73,14 @@
                         <String fx:value="Немає" />
                     </value>
                 </ChoiceBox>
-                  <Button layoutX="86.0" layoutY="432.0" mnemonicParsing="false" onAction="#cleanCanvas" prefHeight="46.0" prefWidth="178.0" text="Очистити полотно">
+                  <Button layoutX="86.0" layoutY="432.0" mnemonicParsing="false" onAction="#cleanCanvas" prefHeight="46.0" prefWidth="178.0" text="Очистити полотно" AnchorPane.leftAnchor="86.0">
                      <font>
                         <Font name="Palatino Linotype Italic" size="17.0" />
                      </font>
                   </Button>
 
 
-                <ChoiceBox fx:id="chooseDuplication" layoutX="86.0" layoutY="212.0" prefHeight="33.0" prefWidth="178.0">
+                <ChoiceBox fx:id="chooseDuplication" layoutX="86.0" layoutY="212.0" prefHeight="33.0" prefWidth="178.0" AnchorPane.leftAnchor="86.0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Немає" />
@@ -99,9 +94,9 @@
                 </ChoiceBox>
 
 
-                  <Separator layoutX="36.0" layoutY="246.0" prefHeight="26.0" prefWidth="278.0" />
-                  <Separator layoutX="36.0" layoutY="341.0" prefHeight="26.0" prefWidth="278.0" />
-                  <Text layoutX="86.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Налаштування" wrappingWidth="178.39999999999998">
+                  <Separator layoutX="36.0" layoutY="246.0" prefHeight="26.0" prefWidth="278.0" AnchorPane.leftAnchor="36.0" />
+                  <Separator layoutX="36.0" layoutY="341.0" prefHeight="26.0" prefWidth="278.0" AnchorPane.leftAnchor="36.0" />
+                  <Text layoutX="86.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Налаштування" wrappingWidth="178.39999999999998" AnchorPane.leftAnchor="86.0">
                      <font>
                         <Font name="Palatino Linotype Bold Italic" size="23.0" />
                      </font>
