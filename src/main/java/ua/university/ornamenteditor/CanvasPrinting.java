@@ -13,6 +13,8 @@ public class CanvasPrinting {
     public static String cross = "✖";
     public static List <Cross> ornament = new ArrayList<>();
     //public static List <Cross> name = new ArrayList<>(List.of());
+    public static List <Cross> verticalOrnament = new ArrayList<>();
+    public static List <Cross> horizontalOrnament = new ArrayList<>();
 
 
 
@@ -29,7 +31,7 @@ public class CanvasPrinting {
 //        gc.setFill(Color.LIGHTGRAY);
 //        gc.fillRect(newX, newY, gridWidth, gridHeight);
         gc.setFill(pickedColor);
-        gc.setFont(new Font(gridWidth));
+        gc.setFont(new Font(gridWidth + 4));
         gc.fillText(cross, newX, newY + gridHeight - 2);
 
 
@@ -70,6 +72,53 @@ public class CanvasPrinting {
 
     public static void deleteAll() {
         ornament.clear();
+        horizontalOrnament.clear();
+        verticalOrnament.clear();
     }
+
+
+
+    public static void verticalDuplication(Canvas canvas) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        for(Cross cros: ornament){
+            gc.setFill(cros.getColor());
+            gc.fillText(cross, (500 - cros.getOneCellScale() - cros.getX()), cros.getY() + cros.getOneCellScale() - 2);
+            Cross c = new Cross((500 - cros.getOneCellScale() - cros.getX()), cros.getY(), cros.getColor(), cros.getOneCellScale());
+           // ornament.removeIf(cr -> cr.getX() == (500 - newX) && cr.getY() == newY);
+            verticalOrnament.add(c);
+        }
+
+        for(Cross cr : verticalOrnament){           //видалити після тестувань
+            System.out.println(cr);
+        }
+        ornament.addAll(verticalOrnament);
+    }
+
+
+
+
+    public static void horizontalDuplication(Canvas canvas) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        for(Cross cros: ornament){
+            gc.setFill(cros.getColor());
+
+            gc.fillText(cross, cros.getX(), (500 - cros.getOneCellScale() - cros.getY()) + cros.getOneCellScale() - 2);
+
+            Cross c = new Cross(cros.getX(),(500 - cros.getOneCellScale() - cros.getY()), cros.getColor(), cros.getOneCellScale());
+            // ornament.removeIf(cr -> cr.getX() == (500 - newX) && cr.getY() == newY);
+            horizontalOrnament.add(c);
+        }
+
+        for(Cross cr : horizontalOrnament){           //видалити після тестувань
+            System.out.println(cr);
+        }
+        ornament.addAll(horizontalOrnament);
+    }
+
+
+
+
 
 }

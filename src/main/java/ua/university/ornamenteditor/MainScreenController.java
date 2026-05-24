@@ -16,6 +16,8 @@ import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static ua.university.ornamenteditor.CanvasPrinting.cross;
 import static ua.university.ornamenteditor.CanvasPrinting.ornament;
@@ -24,13 +26,26 @@ public class MainScreenController {
 //    @FXML
 //    private Label welcomeText;
     public int symStatus = 0; //1- вертикальна    2-горизонтальна
-    public int dupStatus = 0; //1- вертикальна    2-горизонтальна
+ //   public int dupStatus = 0; //1- вертикальна    2-горизонтальна
 
     @FXML
     protected void cleanCanvas() {
         System.out.println("cleanCanvas");
         CanvasPrinting.deleteAll();
         redrawGrid();
+    }
+
+
+    @FXML
+    protected void verticalDuplication() {
+        System.out.println("verticalDuplication");
+        CanvasPrinting.verticalDuplication(myCanvas);
+    }
+
+    @FXML
+    protected void horizontalDuplication() {
+        System.out.println("horizontalDuplication");
+        CanvasPrinting.horizontalDuplication(myCanvas);
     }
 
 
@@ -85,6 +100,13 @@ public class MainScreenController {
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, width, height);
         drawGrid(gc, width, height, cells1);
+
+
+        for(Cross c: getInitialOrnament()){
+            gc.setFill(c.getColor());
+            gc.setFont(new Font(c.getOneCellScale() + 4));
+            gc.fillText(cross, c.getX(), c.getY() + c.getOneCellScale() - 2);
+        }
 
     }
 
@@ -220,7 +242,7 @@ public class MainScreenController {
 
         for(Cross c:ornament){
             gc.setFill(c.getColor());
-            gc.setFont(new Font(c.getOneCellScale()));
+            gc.setFont(new Font(c.getOneCellScale()+4));
             gc.fillText(cross, c.getX(), c.getY() + c.getOneCellScale() - 2);
         }
 
@@ -228,28 +250,136 @@ public class MainScreenController {
     }
 
 
-    @FXML
-    public void drawName() {
+    public static List<Cross> getInitialOrnament() {
+        List<Cross> ornamentList = new ArrayList<>();
 
-        double width = myCanvas.getWidth();
-        double height = myCanvas.getHeight();
-        GraphicsContext gc = myCanvas.getGraphicsContext2D();
+        ornamentList.add(new Cross(238.0952380952381, 47.61904761904765, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(238.0952380952381, 428.57142857142856, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(214.28571428571428, 404.76190476190476, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(214.28571428571428, 71.42857142857143, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(238.0952380952381, 404.76190476190476, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(238.0952380952381, 71.42857142857143, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(261.9047619047619, 404.76190476190476, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(261.9047619047619, 71.42857142857143, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(190.47619047619048, 380.95238095238096, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(190.47619047619048, 95.23809523809524, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(285.7142857142857, 380.95238095238096, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(285.7142857142857, 95.23809523809524, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(47.61904761904762, 238.0952380952381, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(71.42857142857143, 214.28571428571428, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(71.42857142857143, 238.0952380952381, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(71.42857142857143, 261.9047619047619, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(95.23809523809524, 190.47619047619048, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(95.23809523809524, 285.7142857142857, Color.web("#000000"), 23.80952380952381));
 
-        gc.clearRect(0, 0, width, height);
+        ornamentList.add(new Cross(214.28571428571428, 95.23809523809524, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(214.28571428571428, 380.95238095238096, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(238.0952380952381, 95.23809523809524, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(238.0952380952381, 380.95238095238096, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(261.9047619047619, 95.23809523809524, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(261.9047619047619, 380.95238095238096, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(166.66666666666669, 95.23809523809524, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(166.66666666666669, 380.95238095238096, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(142.85714285714286, 95.23809523809524, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(142.85714285714286, 380.95238095238096, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(309.5238095238095, 95.23809523809524, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(309.5238095238095, 380.95238095238096, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(333.33333333333337, 95.23809523809524, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(333.33333333333337, 380.95238095238096, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(238.0952380952381, 119.04761904761904, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(238.0952380952381, 357.14285714285717, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(238.0952380952381, 142.85714285714283, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(238.0952380952381, 333.33333333333337, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(261.9047619047619, 142.85714285714283, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(261.9047619047619, 333.33333333333337, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(285.7142857142857, 142.85714285714283, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(285.7142857142857, 333.33333333333337, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(214.28571428571428, 142.85714285714283, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(214.28571428571428, 333.33333333333337, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(190.47619047619048, 142.85714285714283, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(190.47619047619048, 333.33333333333337, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(190.47619047619048, 357.14285714285717, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(285.7142857142857, 357.14285714285717, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(309.5238095238095, 357.14285714285717, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(166.66666666666669, 357.14285714285717, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(380.95238095238096, 214.28571428571428, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(95.23809523809524, 214.28571428571428, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(95.23809523809524, 238.0952380952381, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(380.95238095238096, 261.9047619047619, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(95.23809523809524, 261.9047619047619, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(95.23809523809524, 166.66666666666669, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(380.95238095238096, 142.85714285714286, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(95.23809523809524, 142.85714285714286, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(95.23809523809524, 309.5238095238095, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(380.95238095238096, 333.33333333333337, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(95.23809523809524, 333.33333333333337, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(357.14285714285717, 238.0952380952381, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(119.04761904761905, 238.0952380952381, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(333.33333333333337, 238.0952380952381, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(142.85714285714286, 238.0952380952381, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(333.33333333333337, 214.28571428571428, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(142.85714285714286, 214.28571428571428, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(357.14285714285717, 190.47619047619048, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(119.04761904761905, 190.47619047619048, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(333.33333333333337, 190.47619047619048, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(142.85714285714286, 190.47619047619048, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(357.14285714285717, 285.7142857142857, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(119.04761904761905, 285.7142857142857, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(333.33333333333337, 285.7142857142857, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(142.85714285714286, 285.7142857142857, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(333.33333333333337, 261.9047619047619, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(142.85714285714286, 261.9047619047619, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(357.14285714285717, 166.66666666666669, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(119.04761904761905, 166.66666666666669, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(357.14285714285717, 309.5238095238095, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(119.04761904761905, 309.5238095238095, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(333.33333333333337, 142.85714285714286, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(142.85714285714286, 142.85714285714286, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(333.33333333333337, 333.33333333333337, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(142.85714285714286, 333.33333333333337, Color.web("#cc3333"), 23.80952380952381));
 
-        gc.setFill(Color.WHITE);
-        gc.fillRect(0, 0, width, height);
+        ornamentList.add(new Cross(166.66666666666669, 309.5238095238095, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(166.66666666666669, 166.66666666666669, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(190.47619047619048, 309.5238095238095, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(190.47619047619048, 166.66666666666669, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(214.28571428571428, 309.5238095238095, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(214.28571428571428, 166.66666666666669, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(166.66666666666669, 285.7142857142857, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(166.66666666666669, 190.47619047619048, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(166.66666666666669, 261.9047619047619, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(166.66666666666669, 214.28571428571428, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(190.47619047619048, 285.7142857142857, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(190.47619047619048, 190.47619047619048, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(309.5238095238095, 309.5238095238095, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(309.5238095238095, 166.66666666666669, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(285.7142857142857, 309.5238095238095, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(285.7142857142857, 166.66666666666669, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(261.9047619047619, 309.5238095238095, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(261.9047619047619, 166.66666666666669, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(309.5238095238095, 285.7142857142857, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(309.5238095238095, 190.47619047619048, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(309.5238095238095, 261.9047619047619, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(309.5238095238095, 214.28571428571428, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(285.7142857142857, 285.7142857142857, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(285.7142857142857, 190.47619047619048, Color.web("#000000"), 23.80952380952381));
 
-        double spinnerValue = width / mySpinner.getValue();
+        ornamentList.add(new Cross(380.95238095238096, 190.47619047619048, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(380.95238095238096, 285.7142857142857, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(404.76190476190476, 214.28571428571428, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(404.76190476190476, 238.0952380952381, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(404.76190476190476, 261.9047619047619, Color.web("#000000"), 23.80952380952381));
+        ornamentList.add(new Cross(428.57142857142856, 238.0952380952381, Color.web("#000000"), 23.80952380952381));
 
-        drawGrid(gc, width, height, spinnerValue);
+        ornamentList.add(new Cross(166.66666666666669, 119.04761904761905, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(190.47619047619048, 119.04761904761905, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(285.7142857142857, 119.04761904761905, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(309.5238095238095, 119.04761904761905, Color.web("#cc3333"), 23.80952380952381));
 
-        for(Cross c:ornament){
-            gc.setFill(c.getColor());
-            gc.setFont(new Font(c.getOneCellScale()));
-            gc.fillText(cross, c.getX(), c.getY() + c.getOneCellScale() - 2);
-        }
+        ornamentList.add(new Cross(380.95238095238096, 166.66666666666669, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(380.95238095238096, 238.0952380952381, Color.web("#cc3333"), 23.80952380952381));
+        ornamentList.add(new Cross(380.95238095238096, 309.5238095238095, Color.web("#cc3333"), 23.80952380952381));
 
+        return ornamentList;
     }
 
 }

@@ -61,7 +61,7 @@
                         <Font name="Palatino Linotype Italic" size="15.0" />
                      </font>
                   </RadioButton>
-                <ChoiceBox fx:id="chooseSymetry" layoutX="86.0" layoutY="125.0"  prefHeight="34.0" prefWidth="178.0" AnchorPane.leftAnchor="86.0">
+                <ChoiceBox fx:id="chooseSymetry" layoutX="86.0" layoutY="125.0" prefHeight="34.0" prefWidth="178.0" AnchorPane.leftAnchor="86.0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Немає" />
@@ -78,20 +78,6 @@
                         <Font name="Palatino Linotype Italic" size="17.0" />
                      </font>
                   </Button>
-
-
-                <ChoiceBox fx:id="chooseDuplication"  layoutX="86.0" layoutY="212.0" prefHeight="33.0" prefWidth="178.0" AnchorPane.leftAnchor="86.0">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Немає" />
-                            <String fx:value="Вертикальне" />
-                            <String fx:value="Горизонтальне" />
-                        </FXCollections>
-                    </items>
-                    <value>
-                        <String fx:value="Немає" />
-                    </value>
-                </ChoiceBox>
 
 
                   <Separator layoutX="36.0" layoutY="246.0" prefHeight="26.0" prefWidth="278.0" AnchorPane.leftAnchor="36.0" />
@@ -111,6 +97,16 @@
                            <Font name="Palatino Linotype Italic" size="15.0" />
                         </font></Text>
                      <Spinner fx:id="mySpinner" editable="true" layoutX="524.0" layoutY="534.0" onMouseClicked="#redrawGrid" AnchorPane.rightAnchor="226.4" />
+                     <Button fx:id="horizontalDup"  onAction="#horizontalDuplication" layoutX="184.0" layoutY="211.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="121.0" text="Горизонтальне" textAlignment="CENTER">
+                        <font>
+                           <Font name="Palatino Linotype Italic" size="15.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="verticalDup" onAction="#verticalDuplication" layoutX="54.0" layoutY="211.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="112.0" text="Вертикальне">
+                        <font>
+                           <Font name="Palatino Linotype Italic" size="15.0" />
+                        </font>
+                     </Button>
             </children>
           </AnchorPane>
         </children>
