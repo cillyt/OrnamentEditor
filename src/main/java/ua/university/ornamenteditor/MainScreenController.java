@@ -19,14 +19,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ua.university.ornamenteditor.CanvasPrinting.cross;
-import static ua.university.ornamenteditor.CanvasPrinting.ornament;
+import static ua.university.ornamenteditor.CanvasPrinting.*;
 
 public class MainScreenController {
 //    @FXML
 //    private Label welcomeText;
     public int symStatus = 0; //1- вертикальна    2-горизонтальна
  //   public int dupStatus = 0; //1- вертикальна    2-горизонтальна
+ public static List <Cross> newOrnament = new ArrayList<>();
+
 
     @FXML
     protected void cleanCanvas() {
@@ -39,13 +40,17 @@ public class MainScreenController {
     @FXML
     protected void verticalDuplication() {
         System.out.println("verticalDuplication");
-        CanvasPrinting.verticalDuplication(myCanvas);
+        int currentCells = mySpinner.getValue();
+        CanvasPrinting.verticalDuplication(myCanvas, currentCells);
+        redrawGrid();
     }
 
     @FXML
     protected void horizontalDuplication() {
         System.out.println("horizontalDuplication");
-        CanvasPrinting.horizontalDuplication(myCanvas);
+        int currentCells = mySpinner.getValue();
+        CanvasPrinting.horizontalDuplication(myCanvas, currentCells);
+        redrawGrid();
     }
 
 
@@ -80,32 +85,31 @@ public class MainScreenController {
     public void initialize() {
         pickedColor.setValue(Color.web("#990000"));
 
-        SpinnerValueFactory<Integer> cells = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 20, 1);
-
+        SpinnerValueFactory<Integer> cells = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 21, 1);
         mySpinner.setValueFactory(cells);
+
+        ornament.clear();
+        ornament.addAll(getInitialOrnament());
 
         mySpinner.valueProperty().addListener((observable, oldValue, newValue) -> {
             redrawGrid();
         });
 
-        double width = myCanvas.getWidth();
-        double height = myCanvas.getHeight();
-        GraphicsContext gc = myCanvas.getGraphicsContext2D();
 
-        double cells1 =  width / (mySpinner.getValue());
+        myCanvas.widthProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() > 0) {
+                redrawGrid();
+            }
+        });
 
+        myCanvas.heightProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() > 0) {
+                redrawGrid();
+            }
+        });
 
-        gc.clearRect(0, 0, width, height);
-
-        gc.setFill(Color.WHITE);
-        gc.fillRect(0, 0, width, height);
-        drawGrid(gc, width, height, cells1);
-
-
-        for(Cross c: getInitialOrnament()){
-            gc.setFill(c.getColor());
-            gc.setFont(new Font(c.getOneCellScale() + 4));
-            gc.fillText(cross, c.getX(), c.getY() + c.getOneCellScale() - 2);
+        if (myCanvas.getWidth() > 0) {
+            redrawGrid();
         }
 
     }
@@ -206,11 +210,12 @@ public class MainScreenController {
 
     @FXML
     public void redrawGrid() {
-        ornament.clear();
+        newOrnament.clear();
+        GraphicsContext gc = myCanvas.getGraphicsContext2D();
 
         double width = myCanvas.getWidth();
         double height = myCanvas.getHeight();
-        GraphicsContext gc = myCanvas.getGraphicsContext2D();
+        //GraphicsContext gc = myCanvas.getGraphicsContext2D();
 
         gc.clearRect(0, 0, width, height);
 
@@ -220,6 +225,38 @@ public class MainScreenController {
         double spinnerValue = width / mySpinner.getValue();
 
         drawGrid(gc, width, height, spinnerValue);
+
+        for(Cross c:ornament){
+            Color color = c.getColor();
+
+
+            double newScale = width / mySpinner.getValue();
+
+            long colIndex = Math.round(c.getX() / c.getOneCellScale());
+            long rowIndex = Math.round(c.getY() / c.getOneCellScale());
+
+            double newX = colIndex * newScale;
+            double newY = rowIndex * newScale;
+
+// ==========================================
+            // МАГІЯ ТУТ: Оновлюємо сам хрестик у пам'яті!
+            // Тепер він "знає", що в нього новий розмір і нові координати.
+            // Завдяки цьому deleteCross знайде його з першого кліку!
+            // ==========================================
+            c.setX(newX);
+            c.setY(newY);
+            c.setOneCellScale(newScale);
+
+
+
+            gc.setFill(color);
+            gc.setFont(new Font(newScale + 4));
+            gc.fillText(cross, newX, newY + newScale - 2);
+
+            newOrnament.add(c);
+        }
+        ornament.clear();
+        ornament.addAll(newOrnament);
 
     }
 
@@ -247,6 +284,30 @@ public class MainScreenController {
         }
 
 
+    }
+
+    public void drawName() {
+        deleteAll();
+
+
+
+        double width = myCanvas.getWidth();
+        double height = myCanvas.getHeight();
+        GraphicsContext gc = myCanvas.getGraphicsContext2D();
+
+
+        gc.clearRect(0, 0, width, height);
+
+        gc.setFill(Color.WHITE);
+        gc.fillRect(0, 0, width, height);
+        drawGrid(gc, width, height, (double) 500 /21);
+
+        for(Cross c: getInitialOrnament()){
+            gc.setFill(c.getColor());
+            gc.setFont(new Font(c.getOneCellScale() + 4));
+            gc.fillText(cross, c.getX(), c.getY() + c.getOneCellScale() - 2);
+            ornament.add(c);
+        }
     }
 
 
