@@ -5,6 +5,7 @@ module ua.university.ornamenteditor {
     requires java.desktop;
     requires javafx.swing;
     requires jdk.compiler;
+    requires javafx.base;
 
 
     opens ua.university.ornamenteditor to javafx.fxml;

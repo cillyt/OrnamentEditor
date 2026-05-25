@@ -1,6 +1,10 @@
 package ua.university.ornamenteditor;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
@@ -12,6 +16,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -34,6 +39,23 @@ public class MainScreenController {
         System.out.println("cleanCanvas");
         CanvasPrinting.deleteAll();
         redrawGrid();
+    }
+
+    @FXML
+    protected void openInstruction(ActionEvent event) {
+        deleteAll();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+            Scene newScene = new Scene(fxmlLoader.load());
+            //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) myCanvas.getScene().getWindow();
+            stage.setScene(newScene);
+            stage.show();
+
+        } catch (IOException e) {
+            System.out.println("Помилка завантаження екрана: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
 
