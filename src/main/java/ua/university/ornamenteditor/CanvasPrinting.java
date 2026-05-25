@@ -11,15 +11,22 @@ import java.util.List;
 
 public class CanvasPrinting {
     public static String cross = "✖";
-    public static List <Cross> ornament = new ArrayList();
+    public static List <Cross> ornament = new ArrayList<>();
+    public static List <Cross> verticalOrnament = new ArrayList<>();
+    public static List <Cross> horizontalOrnament = new ArrayList<>();
 
-    private static double gridWidth = 470.0 / 26.0;
-    private static double gridHeight = 470.0 / 26.0;
 
-    public static void putCross(MouseEvent e, Canvas canvas, Color pickedColor, int symStatus) {
+
+    public static void putCross(MouseEvent e, Canvas canvas, Color pickedColor, int symStatus, double gridWidth, double gridHeight) {
         double x = e.getX();
         double y = e.getY();
 //        System.out.println("x=" + x + ", y=" + y);
+//grid... - розмір однієї комірочки
+
+        double width = canvas.getWidth();
+        double height = canvas.getHeight();
+
+
 
         double newX = Math.floor(x / gridWidth) * gridWidth;
         double newY = Math.floor(y / gridHeight) * gridHeight;
@@ -29,28 +36,27 @@ public class CanvasPrinting {
 //        gc.setFill(Color.LIGHTGRAY);
 //        gc.fillRect(newX, newY, gridWidth, gridHeight);
         gc.setFill(pickedColor);
-        gc.setFont(new Font(19));
+        gc.setFont(new Font(gridWidth + 4));
         gc.fillText(cross, newX, newY + gridHeight - 2);
 
-        if (symStatus == 1) {               //vertical
-            gc.fillText(cross, (470 - ((double) 470 /26)) - newX, newY + gridHeight - 2);
 
-            Cross c = new Cross((470 - ((double) 470 /26)) - newX, newY, pickedColor);
-            ornament.removeIf(cr -> cr.getX() == (470 - ((double) 470 /26)) - newX && cr.getY() == newY);
+        if (symStatus == 1) {               //vertical symmetry
+            gc.fillText(cross, (width - gridWidth - newX), newY + gridHeight - 2);
+
+            Cross c = new Cross((width - gridWidth - newX), newY, pickedColor, gridWidth);
+            ornament.removeIf(cr -> cr.getX() == (width - gridWidth - newX) && cr.getY() == newY);
             ornament.add(c);
         }
 
-        else if (symStatus == 2) {          //horizontal
-            gc.fillText(cross, newX, (470 - ((double) 470 /26)) - newY + gridHeight - 2);
+        else if (symStatus == 2) {          //horizontal symmetry
+            gc.fillText(cross, newX, (height - gridHeight - newY)  + gridHeight - 2);
 
-            Cross c = new Cross(newX, (470 - ((double) 470 /26)) - newY, pickedColor);
-            ornament.removeIf(cr -> cr.getX() == newX && cr.getY() == (470 - ((double) 470 /26)) - newY);
+            Cross c = new Cross(newX, (height - gridHeight - newY), pickedColor, gridWidth);
+            ornament.removeIf(cr -> cr.getX() == newX && cr.getY() == (height - gridHeight - newY));
             ornament.add(c);
         }
 
-
-
-        Cross c = new Cross(newX, newY, pickedColor);
+        Cross c = new Cross(newX, newY, pickedColor, gridWidth);
         ornament.removeIf(cr -> cr.getX() == newX && cr.getY() == newY);
         ornament.add(c);
 
@@ -59,23 +65,93 @@ public class CanvasPrinting {
         }
     }
 
-    public static void deleteCross(MouseEvent e, Canvas canvas) {
+    public static void deleteCross(MouseEvent e, double gridWidth, double gridHeight) {
         double x = e.getX();
         double y = e.getY();
 
         double newX = Math.floor(x / gridWidth) * gridWidth;
         double newY = Math.floor(y / gridHeight) * gridHeight;
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.clearRect(newX, newY, gridWidth, gridHeight);
-
         ornament.removeIf((Cross cr) -> cr.getX() == newX && cr.getY() == newY);
     }
 
-    public static void deleteAll(Canvas canvas) {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.clearRect(0, 0, 470, 470);
+    public static void deleteAll() {
         ornament.clear();
+        horizontalOrnament.clear();
+        verticalOrnament.clear();
     }
+
+
+
+    public static void verticalDuplication(Canvas canvas , int spinnerValue) {
+        double width = canvas.getWidth();
+        double currentScale = width / spinnerValue;
+
+        verticalOrnament.clear();
+
+
+        for(Cross cros: ornament){
+            long colIndex = Math.round(cros.getX() / cros.getOneCellScale());
+            long rowIndex = Math.round(cros.getY() / cros.getOneCellScale());
+
+            long mirroredColIndex = spinnerValue - 1 - colIndex;
+
+            double newX = mirroredColIndex * currentScale;
+            double newY = rowIndex * currentScale;
+
+            Cross c = new Cross(newX, newY, cros.getColor(), currentScale);
+
+            verticalOrnament.removeIf(cr -> cr.getX() == newX && cr.getY() == newY);
+            verticalOrnament.add(c);
+        }
+
+
+        for (Cross newCross : verticalOrnament) {
+            ornament.removeIf(oldCross -> oldCross.getX() == newCross.getX() && oldCross.getY() == newCross.getY());
+        }
+        ornament.addAll(verticalOrnament);
+
+
+
+    }
+
+
+
+
+    public static void horizontalDuplication(Canvas canvas, int spinnerValue) {
+
+
+        double width = canvas.getWidth();
+        double currentScale = width / spinnerValue;
+        //deleteAll();
+        horizontalOrnament.clear();
+
+        for(Cross cros: ornament){
+            long colIndex = Math.round(cros.getX() / cros.getOneCellScale());
+            long rowIndex = Math.round(cros.getY() / cros.getOneCellScale());
+
+            long mirroredRowIndex = spinnerValue - 1 - rowIndex;
+
+            double newX = colIndex * currentScale;
+            double newY = mirroredRowIndex * currentScale;
+
+            Cross c = new Cross(newX, newY, cros.getColor(), currentScale);
+
+
+
+
+            horizontalOrnament.removeIf(cr -> cr.getX() == newX && cr.getY() == newY);
+            horizontalOrnament.add(c);
+        }
+
+        for (Cross newCross : horizontalOrnament) {
+            ornament.removeIf(oldCross -> oldCross.getX() == newCross.getX() && oldCross.getY() == newCross.getY());
+        }
+        ornament.addAll(horizontalOrnament);
+    }
+
+
+
+
 
 }

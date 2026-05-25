@@ -4,26 +4,36 @@ import javafx.scene.paint.Color;
 
 public class Cross {
     Color color;
-    double x;
-    double y;
-    Cross(double x, double y, Color color) {
-        this.x = x;
-        this.y = y;
+    double cellX;
+    double cellY;
+    double oneCell;
+    Cross(double cellX, double cellY, Color color, double oneCell) {
+        this.cellX = cellX;
+        this.cellY = cellY;
         this.color = color;
+        this.oneCell = oneCell;
     }
     public String toString(){
-        return "cross:" + color + " " + x + " " + y;
+        return "cross:" + color + " " + cellX + " " + cellY + " " + oneCell ;
     }
 
     public double getX() {
-        return x;
+        return cellX;
     }
 
     public double getY() {
-        return y;
+        return cellY;
     }
 
     public Color getColor() {
         return color;
     }
+
+    public double getOneCellScale() {
+        return oneCell;
+    }
+
+    public void setX(double x) { this.cellX = x; }
+    public void setY(double y) { this.cellY = y; }
+    public void setOneCellScale(double oneCellScale) { this.oneCell = oneCellScale; }
 }

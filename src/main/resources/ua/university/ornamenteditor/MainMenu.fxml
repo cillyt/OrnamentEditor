@@ -5,49 +5,49 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="ua.university.ornamenteditor.MenuController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ua.university.ornamenteditor.MenuController">
         <StackPane styleClass="main-background" stylesheets="@../../../style.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
 
         <children>
             <VBox prefHeight="600.0" prefWidth="900.0">
                 <children>
-                    <MenuBar VBox.vgrow="NEVER">
-                        <menus>
-                            <Menu mnemonicParsing="false" text="Новий візерунок">
-                                <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#onNewGenerateButtonClick" text="Згенерувати візерунок за словом" />
-                                </items>
-                            </Menu>
-                            <Menu mnemonicParsing="false" text="Зберегти">
-                                <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#onSaveButtonClick" text="Зберегти як..." />
-                                </items>
-                            </Menu>
-                            <Menu mnemonicParsing="false" text="Відкрити">
-                                <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#onOpenButtonClick" text="Відкрити візерунок" />
-                                </items>
-                            </Menu>
-                            <Menu mnemonicParsing="false" text="Інструкція">
-                                <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#onInstructionButtonClick" text="Відкрити інструкцію щодо використання" />
-                                </items>
-                            </Menu>
-                        </menus>
-                    </MenuBar>
+<!--                    <MenuBar VBox.vgrow="NEVER">-->
+<!--                        <menus>-->
+<!--                            <Menu mnemonicParsing="false" text="Новий візерунок">-->
+<!--                                <items>-->
+<!--                                    <MenuItem mnemonicParsing="false" onAction="#onNewGenerateButtonClick" text="Згенерувати візерунок за словом" />-->
+<!--                                </items>-->
+<!--                            </Menu>-->
+<!--                            <Menu mnemonicParsing="false" text="Зберегти">-->
+<!--                                <items>-->
+<!--                                    <MenuItem mnemonicParsing="false" onAction="#onSaveButtonClick" text="Зберегти як..." />-->
+<!--                                </items>-->
+<!--                            </Menu>-->
+<!--                            <Menu mnemonicParsing="false" text="Відкрити">-->
+<!--                                <items>-->
+<!--                                    <MenuItem mnemonicParsing="false" onAction="#onOpenButtonClick" text="Відкрити візерунок" />-->
+<!--                                </items>-->
+<!--                            </Menu>-->
+<!--                            <Menu mnemonicParsing="false" onAction="#openInstruction" text="Інструкція">-->
+<!--                                <items>-->
+<!--                                    <MenuItem mnemonicParsing="false" onAction="#onInstructionButtonClick" text="Відкрити інструкцію щодо використання" />-->
+<!--                                </items>-->
+<!--                            </Menu>-->
+<!--                        </menus>-->
+<!--                    </MenuBar>-->
                     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="596.0" prefWidth="902.0" VBox.vgrow="ALWAYS">
                         <children>
-                            <Button layoutX="311.0" layoutY="400.0" mnemonicParsing="false" onAction="#onStartButtonClick" prefHeight="70.0" prefWidth="277.0" text="Розпочати!" textAlignment="CENTER">
+                            <Button layoutX="311.0" layoutY="417.0" mnemonicParsing="false" onAction="#onStartButtonClick" prefHeight="70.0" prefWidth="277.0" text="Розпочати!" textAlignment="CENTER">
                                 <font>
                                     <Font name="Palatino Linotype Italic" size="22.0" />
                                 </font>
                             </Button>
-                            <Button layoutX="352.0" layoutY="495.0" mnemonicParsing="false" onAction="#onExitButtonClick" prefHeight="45.0" prefWidth="196.0" text="Вихід">
+                            <Button layoutX="352.0" layoutY="507.0" mnemonicParsing="false" onAction="#onExitButtonClick" prefHeight="45.0" prefWidth="196.0" text="Вихід">
                                 <font>
                                     <Font name="Palatino Linotype Italic" size="17.0" />
                                 </font>
                             </Button>
-                            <ImageView fitHeight="620.0" fitWidth="331.0" layoutX="284.0" layoutY="-81.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+                            <ImageView fitHeight="620.0" fitWidth="331.0" layoutX="284.0" layoutY="-73.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
                                 <image>
                                     <Image url="@../../../img/back2.jpg" />
                                 </image>

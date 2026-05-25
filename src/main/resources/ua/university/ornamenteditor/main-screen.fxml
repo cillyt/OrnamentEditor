@@ -17,7 +17,7 @@
             <menus>
               <Menu mnemonicParsing="false" text="Новий візерунок">
                 <items>
-                  <MenuItem mnemonicParsing="false" text="Згенерувати візерунок за словом" />
+                  <MenuItem mnemonicParsing="false" onAction="#drawName" text="Згенерувати візерунок за ім'ям &quot;Анна&quot;" />
                 </items>
               </Menu>
               <Menu mnemonicParsing="false" text="Зберегти">
@@ -32,7 +32,7 @@
               </Menu>
                   <Menu mnemonicParsing="false" text="Інструкція">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Відкрити інструкцію щодо використання" />
+                        <MenuItem mnemonicParsing="false" onAction="#openInstruction" text="Відкрити інструкцію щодо використання"  />
                      </items>
                   </Menu>
             </menus>
@@ -44,12 +44,12 @@
 <!--                        <Font name="Palatino Linotype Italic" size="21.0" />-->
 <!--                     </font>-->
 <!--                  </Button>-->
-                  <ImageView fitHeight="470.0" fitWidth="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="86.39999999999998" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="18.0">
-                     <image>
-                        <Image url="@../../../img/grid.png" />
-                     </image>
-                  </ImageView>
-                <Canvas fx:id="myCanvas" height="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" width="470.0" AnchorPane.rightAnchor="97.0" />
+<!--                  <ImageView fitHeight="470.0" fitWidth="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="86.39999999999998" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="18.0">-->
+<!--                     <image>-->
+<!--                        <Image url="@../../../img/white2.jpg" />-->
+<!--                     </image>-->
+<!--                  </ImageView>-->
+                <Canvas fx:id="myCanvas" height="500.0" layoutX="349.0" layoutY="22.0" onMouseClicked="#changeCross" width="500.0" AnchorPane.rightAnchor="51.0" />
                 <ImageView fitHeight="528.0" fitWidth="278.0" layoutX="36.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="36.0">
                      <image>
                          <Image url="@../../../img/back2.jpg" />
@@ -61,7 +61,7 @@
                         <Font name="Palatino Linotype Italic" size="15.0" />
                      </font>
                   </RadioButton>
-                <ChoiceBox fx:id="chooseSymetry" layoutX="86.0" layoutY="125.0" onAction="#chooseSymetry" prefHeight="34.0" prefWidth="178.0" AnchorPane.leftAnchor="86.0">
+                <ChoiceBox fx:id="chooseSymetry" layoutX="86.0" layoutY="125.0" prefHeight="34.0" prefWidth="178.0" AnchorPane.leftAnchor="86.0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Немає" />
@@ -80,20 +80,6 @@
                   </Button>
 
 
-                <ChoiceBox fx:id="chooseDuplication" layoutX="86.0" layoutY="212.0" prefHeight="33.0" prefWidth="178.0" AnchorPane.leftAnchor="86.0">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Немає" />
-                            <String fx:value="Вертикальне" />
-                            <String fx:value="Горизонтальне" />
-                        </FXCollections>
-                    </items>
-                    <value>
-                        <String fx:value="Немає" />
-                    </value>
-                </ChoiceBox>
-
-
                   <Separator layoutX="36.0" layoutY="246.0" prefHeight="26.0" prefWidth="278.0" AnchorPane.leftAnchor="36.0" />
                   <Separator layoutX="36.0" layoutY="341.0" prefHeight="26.0" prefWidth="278.0" AnchorPane.leftAnchor="36.0" />
                   <Text layoutX="86.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Налаштування" wrappingWidth="178.39999999999998" AnchorPane.leftAnchor="86.0">
@@ -110,6 +96,17 @@
                         <font>
                            <Font name="Palatino Linotype Italic" size="15.0" />
                         </font></Text>
+                     <Spinner fx:id="mySpinner" editable="true" layoutX="524.0" layoutY="534.0" onMouseClicked="#redrawGrid" AnchorPane.rightAnchor="226.4" />
+                     <Button fx:id="horizontalDup" layoutX="184.0" layoutY="211.0" mnemonicParsing="false" onAction="#horizontalDuplication" prefHeight="36.0" prefWidth="121.0" text="Горизонтальне" textAlignment="CENTER">
+                        <font>
+                           <Font name="Palatino Linotype Italic" size="15.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="verticalDup" layoutX="54.0" layoutY="211.0" mnemonicParsing="false" onAction="#verticalDuplication" prefHeight="34.0" prefWidth="112.0" text="Вертикальне">
+                        <font>
+                           <Font name="Palatino Linotype Italic" size="15.0" />
+                        </font>
+                     </Button>
             </children>
           </AnchorPane>
         </children>
