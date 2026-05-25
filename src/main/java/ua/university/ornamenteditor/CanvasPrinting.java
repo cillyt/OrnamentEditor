@@ -15,30 +15,21 @@ public class CanvasPrinting {
     public static List <Cross> verticalOrnament = new ArrayList<>();
     public static List <Cross> horizontalOrnament = new ArrayList<>();
 
-
-
     public static void putCross(MouseEvent e, Canvas canvas, Color pickedColor, int symStatus, double gridWidth, double gridHeight) {
         double x = e.getX();
         double y = e.getY();
-//        System.out.println("x=" + x + ", y=" + y);
-//grid... - розмір однієї комірочки
 
         double width = canvas.getWidth();
         double height = canvas.getHeight();
-
-
 
         double newX = Math.floor(x / gridWidth) * gridWidth;
         double newY = Math.floor(y / gridHeight) * gridHeight;
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-//        gc.setFill(Color.LIGHTGRAY);
-//        gc.fillRect(newX, newY, gridWidth, gridHeight);
         gc.setFill(pickedColor);
         gc.setFont(new Font(gridWidth + 4));
         gc.fillText(cross, newX, newY + gridHeight - 2);
-
 
         if (symStatus == 1) {               //vertical symmetry
             gc.fillText(cross, (width - gridWidth - newX), newY + gridHeight - 2);
@@ -81,14 +72,11 @@ public class CanvasPrinting {
         verticalOrnament.clear();
     }
 
-
-
     public static void verticalDuplication(Canvas canvas , int spinnerValue) {
         double width = canvas.getWidth();
         double currentScale = width / spinnerValue;
 
         verticalOrnament.clear();
-
 
         for(Cross cros: ornament){
             long colIndex = Math.round(cros.getX() / cros.getOneCellScale());
@@ -110,20 +98,13 @@ public class CanvasPrinting {
             ornament.removeIf(oldCross -> oldCross.getX() == newCross.getX() && oldCross.getY() == newCross.getY());
         }
         ornament.addAll(verticalOrnament);
-
-
-
     }
 
 
 
-
     public static void horizontalDuplication(Canvas canvas, int spinnerValue) {
-
-
         double width = canvas.getWidth();
         double currentScale = width / spinnerValue;
-        //deleteAll();
         horizontalOrnament.clear();
 
         for(Cross cros: ornament){
@@ -137,9 +118,6 @@ public class CanvasPrinting {
 
             Cross c = new Cross(newX, newY, cros.getColor(), currentScale);
 
-
-
-
             horizontalOrnament.removeIf(cr -> cr.getX() == newX && cr.getY() == newY);
             horizontalOrnament.add(c);
         }
@@ -149,9 +127,5 @@ public class CanvasPrinting {
         }
         ornament.addAll(horizontalOrnament);
     }
-
-
-
-
 
 }

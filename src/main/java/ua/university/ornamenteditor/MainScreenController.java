@@ -3,7 +3,6 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
@@ -27,11 +26,24 @@ import java.util.List;
 import static ua.university.ornamenteditor.CanvasPrinting.*;
 
 public class MainScreenController {
-//    @FXML
-//    private Label welcomeText;
     public int symStatus = 0; //1- вертикальна    2-горизонтальна
- //   public int dupStatus = 0; //1- вертикальна    2-горизонтальна
- public static List <Cross> newOrnament = new ArrayList<>();
+
+    @FXML
+    protected ColorPicker pickedColor;
+
+    @FXML
+    protected RadioButton clearOne;
+
+    @FXML
+    protected ChoiceBox chooseSymetry;
+
+    @FXML
+    private Canvas myCanvas;
+
+    @FXML
+    private Spinner<Integer> mySpinner;
+
+    public static List <Cross> newOrnament = new ArrayList<>();
 
 
     @FXML
@@ -47,7 +59,6 @@ public class MainScreenController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
             Scene newScene = new Scene(fxmlLoader.load());
-            //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Stage stage = (Stage) myCanvas.getScene().getWindow();
             stage.setScene(newScene);
             stage.show();
@@ -136,18 +147,6 @@ public class MainScreenController {
 
     }
 
-//    @FXML
-//    protected void chooseSymetry() {
-//        if(chooseSymetry.getValue().equals("Вертикальна")){
-//            System.out.println("Вертикальна");
-//        }
-//    }
-
-//    @FXML
-//    protected void chooseDuplication() {
-//        System.out.println("chooseDuplication");
-//    }
-
 
 
     @FXML
@@ -195,23 +194,6 @@ public class MainScreenController {
     }
 
 
-    @FXML
-    protected ColorPicker pickedColor;
-
-    @FXML
-    protected RadioButton clearOne;
-
-    @FXML
-    protected ChoiceBox chooseSymetry;
-
-    @FXML
-    private Canvas myCanvas;
-
-    @FXML
-    private Spinner<Integer> mySpinner;
-
-
-
 
     private void drawGrid(GraphicsContext gc, double width, double height, double cellSize) {
         gc.setStroke(Color.LIGHTGRAY);
@@ -228,8 +210,6 @@ public class MainScreenController {
 
 
 
-
-
     @FXML
     public void redrawGrid() {
         newOrnament.clear();
@@ -237,7 +217,6 @@ public class MainScreenController {
 
         double width = myCanvas.getWidth();
         double height = myCanvas.getHeight();
-        //GraphicsContext gc = myCanvas.getGraphicsContext2D();
 
         gc.clearRect(0, 0, width, height);
 
@@ -251,7 +230,6 @@ public class MainScreenController {
         for(Cross c:ornament){
             Color color = c.getColor();
 
-
             double newScale = width / mySpinner.getValue();
 
             long colIndex = Math.round(c.getX() / c.getOneCellScale());
@@ -260,16 +238,9 @@ public class MainScreenController {
             double newX = colIndex * newScale;
             double newY = rowIndex * newScale;
 
-// ==========================================
-            // МАГІЯ ТУТ: Оновлюємо сам хрестик у пам'яті!
-            // Тепер він "знає", що в нього новий розмір і нові координати.
-            // Завдяки цьому deleteCross знайде його з першого кліку!
-            // ==========================================
             c.setX(newX);
             c.setY(newY);
             c.setOneCellScale(newScale);
-
-
 
             gc.setFill(color);
             gc.setFont(new Font(newScale + 4));
@@ -284,7 +255,6 @@ public class MainScreenController {
 
     @FXML
     public void redrawGridWithOrnament() {
-//        ornament.clear();
 
         double width = myCanvas.getWidth();
         double height = myCanvas.getHeight();
@@ -304,19 +274,16 @@ public class MainScreenController {
             gc.setFont(new Font(c.getOneCellScale()+4));
             gc.fillText(cross, c.getX(), c.getY() + c.getOneCellScale() - 2);
         }
-
-
     }
+
+
 
     public void drawName() {
         deleteAll();
 
-
-
         double width = myCanvas.getWidth();
         double height = myCanvas.getHeight();
         GraphicsContext gc = myCanvas.getGraphicsContext2D();
-
 
         gc.clearRect(0, 0, width, height);
 

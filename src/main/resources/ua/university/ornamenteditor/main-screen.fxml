@@ -39,16 +39,6 @@
           </MenuBar>
           <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="596.0" prefWidth="902.0" VBox.vgrow="ALWAYS">
             <children>
-<!--                  <Button layoutX="428.0" layoutY="489.0" mnemonicParsing="false" onAction="#printOrnament" prefHeight="70.0" prefWidth="277.0" text="Вишити!" textAlignment="CENTER">-->
-<!--                     <font>-->
-<!--                        <Font name="Palatino Linotype Italic" size="21.0" />-->
-<!--                     </font>-->
-<!--                  </Button>-->
-<!--                  <ImageView fitHeight="470.0" fitWidth="470.0" layoutX="333.0" layoutY="18.0" onMouseClicked="#changeCross" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="86.39999999999998" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="18.0">-->
-<!--                     <image>-->
-<!--                        <Image url="@../../../img/white2.jpg" />-->
-<!--                     </image>-->
-<!--                  </ImageView>-->
                 <Canvas fx:id="myCanvas" height="500.0" layoutX="349.0" layoutY="22.0" onMouseClicked="#changeCross" width="500.0" AnchorPane.rightAnchor="51.0" />
                 <ImageView fitHeight="528.0" fitWidth="278.0" layoutX="36.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="36.0">
                      <image>

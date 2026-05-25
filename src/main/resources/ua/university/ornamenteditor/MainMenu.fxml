@@ -11,30 +11,6 @@
         <children>
             <VBox prefHeight="600.0" prefWidth="900.0">
                 <children>
-<!--                    <MenuBar VBox.vgrow="NEVER">-->
-<!--                        <menus>-->
-<!--                            <Menu mnemonicParsing="false" text="Новий візерунок">-->
-<!--                                <items>-->
-<!--                                    <MenuItem mnemonicParsing="false" onAction="#onNewGenerateButtonClick" text="Згенерувати візерунок за словом" />-->
-<!--                                </items>-->
-<!--                            </Menu>-->
-<!--                            <Menu mnemonicParsing="false" text="Зберегти">-->
-<!--                                <items>-->
-<!--                                    <MenuItem mnemonicParsing="false" onAction="#onSaveButtonClick" text="Зберегти як..." />-->
-<!--                                </items>-->
-<!--                            </Menu>-->
-<!--                            <Menu mnemonicParsing="false" text="Відкрити">-->
-<!--                                <items>-->
-<!--                                    <MenuItem mnemonicParsing="false" onAction="#onOpenButtonClick" text="Відкрити візерунок" />-->
-<!--                                </items>-->
-<!--                            </Menu>-->
-<!--                            <Menu mnemonicParsing="false" onAction="#openInstruction" text="Інструкція">-->
-<!--                                <items>-->
-<!--                                    <MenuItem mnemonicParsing="false" onAction="#onInstructionButtonClick" text="Відкрити інструкцію щодо використання" />-->
-<!--                                </items>-->
-<!--                            </Menu>-->
-<!--                        </menus>-->
-<!--                    </MenuBar>-->
                     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="596.0" prefWidth="902.0" VBox.vgrow="ALWAYS">
                         <children>
                             <Button layoutX="311.0" layoutY="417.0" mnemonicParsing="false" onAction="#onStartButtonClick" prefHeight="70.0" prefWidth="277.0" text="Розпочати!" textAlignment="CENTER">
@@ -52,9 +28,9 @@
                                     <Image url="@../../../img/back2.jpg" />
                                 </image>
                             </ImageView>
-                            <Text layoutX="231.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вітаю у редакторі орнаменту! &#10;У програмі Ви можете створити власний унікальний орнамент&#10;Інструкція щодо використання:&#10;1." textAlignment="CENTER" wrappingWidth="455.90385818481445">
+                            <Text layoutX="174.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вітаю у редакторі орнаменту! &#10;У програмі Ви можете створити власний унікальний орнамент&#10;&#10;Інструкція щодо використання:&#10;1. Симетрія. Після обрання зі списку типу симетрії, окрім поставленого хрестика користувачем, одразу малюється другий, симетричний хрестик.&#10;2. Дублювання. Після створення орнаменту можна продублювати його вертикально або горизонтально. Щоб створити повторюваний візерунок можна поступово збільшувати кількість клітинок під полотном. &#10;3. Збереження та відкриття. Можна зберегти створений візерунок у форматі .png та відкрити його без можливості редагування.&#10;" textAlignment="CENTER" wrappingWidth="551.9038581848145">
                                 <font>
-                                    <Font name="Palatino Linotype Italic" size="23.0" />
+                                    <Font name="Palatino Linotype Italic" size="18.0" />
                                 </font>
                             </Text>
                         </children>
