@@ -32,4 +32,8 @@ public class Cross {
     public double getOneCellScale() {
         return oneCell;
     }
+
+    public void setX(double x) { this.cellX = x; }
+    public void setY(double y) { this.cellY = y; }
+    public void setOneCellScale(double oneCellScale) { this.oneCell = oneCellScale; }
 }
